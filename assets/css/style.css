@@ -91,7 +91,7 @@ footer {
 }
 
 /* 
- * REGISTER PAGE STYLE 
+ * FORM STYLE 
  */
 #register, #login {
   text-align: center;
@@ -106,27 +106,26 @@ footer {
   width: 30%;
 }
 
-#register form label, #register form input,
-#login form label, #login form input {
+form label, form input {
   display: block;
   margin-bottom: 10px;
 }
 
-#register form input,
-#login form input {
+form input {
   width: 85%;
 }
 
-#register form button,
-#login form button {
+form button {
+  box-sizing: border-box;
   color: #fff;
   background: #007bff;
   padding: 10px;
   border: none;
   border-radius: 5px;
   font-weight: 600;
-  width: 90%;
+  width: 89%;
   margin: 10px auto;
+  cursor: pointer;
 }
 
 /* 
@@ -162,6 +161,7 @@ footer {
   border: none;
   color: white;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .page {
@@ -287,3 +287,23 @@ footer {
 /*
  *  ADMINISTRASI - ADMIN
  */
+
+.verifikasi ul {
+  padding: 0;
+}
+
+.verifikasi ul li {
+  list-style-type: none;
+}
+
+.verifikasi ul li p {
+  color: #0f86b6;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.verifikasi ul li a {
+  color: #0f86b6;
+  text-decoration: underline;
+  font-weight: 600;
+}
