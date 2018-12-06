@@ -1,0 +1,289 @@
+/* 
+ * MAIN STYLE 
+ */
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body, html {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: 'Lato', sans-serif;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 90%;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Custom horizontal line */
+hr {
+  width: 90%;
+  margin-left: -1px;
+  height: 1px;
+  color: #e4e4e4;
+  background-color: #e4e4e4;
+  border: none;
+}
+
+/* 
+ * NAV STYLE 
+ */
+nav {
+    width: 100%;
+    background: #123f77;
+}
+
+nav .logo {
+	display: inline-block;
+	color: #fff;
+}
+
+/* ul: placeholder for clickable anchor. on the right-side */
+nav ul {
+	float: right;
+  margin: 15px auto;
+  padding: 0;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 10px;
+  color: white;
+}
+
+nav ul li:hover {
+  background: #e91e63;
+  cursor: pointer;
+}
+
+nav .menu:hover {
+  color: #e91e63;
+  cursor: pointer;
+}
+
+nav ul li a {
+  color: #fff;
+}
+
+/* change to gif */
+img#hero {
+  width: auto;
+  height: 100%;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  background: #123f77;
+  text-align: center;
+  color: #fff;
+}
+
+/* 
+ * REGISTER PAGE STYLE 
+ */
+#register, #login {
+  text-align: center;
+}
+
+#register form, #login form {
+  text-align: left;
+  padding-left: 40px;
+  margin: auto;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  width: 30%;
+}
+
+#register form label, #register form input,
+#login form label, #login form input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#register form input,
+#login form input {
+  width: 85%;
+}
+
+#register form button,
+#login form button {
+  color: #fff;
+  background: #007bff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  width: 90%;
+  margin: 10px auto;
+}
+
+/* 
+ * USERS DASHBOARD STYLE 
+ */
+
+/* Menu: dashboard, administrasi. clickable anchor */
+.menu {
+  display: inline-block;
+  color: #fff;
+  margin-left: 40px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.dashboard {
+  width: 100%;
+  background-color: #fff;
+}
+
+.dashboard h1 {
+  display: inline-block;
+  margin-left: 5%;
+}
+
+.dashboard-button {
+  float: right;
+  display: block;
+  padding: 12px 24px;
+  margin-left: 20px;
+  margin-top: 15px;
+  background-color: #0f86b6;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.page {
+  border: 1px solid #e4e4e4;
+  background: #f8f9fa;
+  min-height: 77vh; /* vh = vertical height. 1% = 1vh */
+  overflow: auto;
+}
+
+/* 
+ * ADMIN DASHBOARD STYLE 
+ */
+.category {
+  padding: 0;
+}
+
+.category-list {
+  margin-right: 20px;
+  display: inline-block;
+  list-style-type: none;
+}
+
+.category-list a {
+  color: #007bff;
+}
+
+/*
+ * DEFAULT - NO DISPLAY
+ */
+#no-display {
+  display: block;
+  height: 250px;
+  margin-top: 5%;
+  background: no-repeat center/30% url("../img/default.png");
+}
+
+#no-display::after {
+  content: "Tidak ada keterangan untuk ditampilkan";
+  display: block;
+  padding-top: 270px;
+  text-align: center;
+  font-size: 24px;
+}
+
+/*
+ *  LIST ITEM IN SELLER - ADMIN DASHBOARD
+ */
+.list-barang {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px; /* 4 col */
+  grid-template-rows: repeat(1, 400px); /* default 1 rows */
+  grid-gap: 10px;
+  grid-auto-rows: 500px; /* Auto add rows */
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+}
+
+.list-barang-ads {
+  width: 250px;
+  height: 450px;
+}
+
+/*  A bit hacky way of animating css 
+    Using ~ general siblings combinators to change opacity
+    of button above img
+*/
+.list-barang-ads img {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 60%;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.box-lihat {
+  transition: .5s ease; /* transition button */
+  opacity: 0;
+  transform: translate(0, -750%);
+  text-align: center;
+}
+
+/* When img are hovered */
+.list-barang-ads img:hover {
+  opacity: 0.3;
+}
+
+.list-barang-ads img:hover + .box-lihat {
+  opacity: 1;
+}
+
+/* When the box is hovered */
+.list-barang-ads .box-lihat:hover {
+  opacity: 1;
+}
+
+.box-lihat > a {
+  background-color: #007bff;
+  color: white;
+  padding: 16px 32px;
+}
+
+.box-lihat > a:hover {
+  color: white;
+  cursor: pointer;
+  padding: 16px 32px;
+}
+
+.box-terjual {
+  display: block;
+  height: 60%;
+  width: 100%;
+  margin-bottom: 35px;
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+  box-sizing: border-box;
+}
+
+/*
+ *  ADMINISTRASI - ADMIN
+ */
