@@ -3,15 +3,15 @@
     
 **config**
     **server configuration**
-    folder structure
-    database connection
+    **folder structure**
+    **database connection**
 
 **view**
     **templates**
         **header**
         **foooter**
     **templates integration**
-    links to page
+    **links to page**
 
 assets
     gif
@@ -21,3 +21,6 @@ edit-modal
     javascript transition to edit
     
 comment-code coherency
+
+-----------------------------
+
