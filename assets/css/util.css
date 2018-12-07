@@ -4,7 +4,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 999; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -74,4 +74,111 @@
 	margin: 0 20px;
 	box-sizing: border-box;
 	padding-left: 40px;
+}
+
+/*
+ *  Custom Input for Buat Iklan form
+ */
+form#form-iklan ul, {
+  padding-left: 5px;
+}
+
+form#form-iklan ul li, .modal-body ul li {
+  list-style-type: none;
+}
+
+form#form-iklan #namabarang,
+form#form-iklan #hargabarang,
+form#form-iklan #stokbarang,
+form#form-iklan #beratbarang,
+form#form-iklan #deskripsibarang,
+form#form-iklan #kategoribarang,
+form#form-iklan #gambarbarang,
+form#form-iklan label[for="namabarang"],
+form#form-iklan label[for="hargabarang"],
+form#form-iklan label[for="stokbarang"],
+form#form-iklan label[for="beratbarang"],
+form#form-iklan label[for="deskripsibarang"],
+form#form-iklan label[for="kategoribarang"],
+form#form-iklan label[for="gambarbarang"] {
+  width: 43%;
+  float: left;
+}
+
+textarea#deskripsibarang, select#kategoribarang {
+  margin-bottom: 20px;
+}
+
+#clear {
+  clear: both;
+}
+
+form#form-iklan input[type="checkbox"] {
+  display: inline-block;
+  width: 58%;
+}
+
+/* Modal List Barang */
+.modal-body ul {
+  padding-left: 40px;
+}
+
+.modal-body ul li p,
+.modal-body ul li span {
+  display: inline-block;
+}
+
+.modal-body ul li p {
+  width: 50%;
+  margin-bottom: 0;
+}
+
+#lihat-deskripsi-barang {
+  position: absolute;
+}
+
+#lihat-deskripsi-barang + span {
+  margin-left: 50%;
+  margin-top: 15px;
+}
+
+.modal-body ul li span {
+  width: 40%;
+  height: 25px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+/* Extra Button */
+.edit-button, .warning-button, .delete-button {
+  box-sizing: border-box;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  width: 30%;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
+.edit-button {
+  background: #007bff;
+}
+
+.warning-button {
+  background: #ffc107;
+}
+
+.delete-button {
+  background: #dc3545;
+}
+
+.modal-body .edit-button, .modal-body .delete-button {
+  width: 48%;
+}
+
+.modal-body .warning-button {
+  width: 97%;
 }

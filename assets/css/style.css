@@ -74,9 +74,13 @@ nav ul li a {
 }
 
 /* change to gif */
-img#hero {
-  width: auto;
-  height: 100%;
+#hero {
+  position: absolute;
+  height: 85%;
+  width: 100%;
+  background: url("../img/wpp-1.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
 }
 
 footer {

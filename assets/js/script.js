@@ -1,32 +1,37 @@
-// 
-// Modal Hak Akses
-// 
+// Function
+function triggerModalHandler(m, tm) {
+	tm.addEventListener('click', () => {
+		m.style.display = 'block';
+	});
+}
+
+function closeModalHandler(m, cm) {
+	cm.addEventListener('click', () => {
+		m.style.display = 'none';
+	});
+}
+
+function windowModalHandler(m) {
+	// Click anywhere outside modal
+	window.addEventListener('click', (e) => {
+		if (e.target == m) {
+			m.style.display = 'none';
+		}
+	});
+}
+
 // Get modal
-const modalHakAkses = document.getElementById('modal-hak-akses');
+const modal = document.getElementsByClassName('modal');
 
 // Get trigger
-const trgModalHakAkses = document.getElementById('trg-modal-hak-akses');
+const triggerModal = document.getElementsByClassName('trigger-modal');
 
 // Get modal-close
-const closeModalHakAkses = document.getElementsByClassName('modal-close')[0];
+const closeModal = document.getElementsByClassName('modal-close');
 
-// Trigger modal
-trgModalHakAkses.addEventListener('click', () => {
-	modalHakAkses.style.display = 'block';
-});
-
-// Trigger modal-close
-closeModalHakAkses.addEventListener('click', () => {
-	modalHakAkses.style.display = 'none';
-});
-
-// Click anywhere outside modal
-window.addEventListener('click', (e) => {
-	if (e.target == modalHakAkses) {
-		modalHakAkses.style.display = 'none';
-	}
-});
-
-// 
-// Modal Tambah Kategori
-// 
+// Loop through modal object
+for(let i = 0; i < modal.length; i++) {
+	triggerModalHandler(modal[i], triggerModal[i]); // Trigger modal
+	closeModalHandler(modal[i], closeModal[i]); // Trigger modal-close
+	windowModalHandler(modal[i]);
+}
