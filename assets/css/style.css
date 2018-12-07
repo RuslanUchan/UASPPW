@@ -40,9 +40,20 @@ nav {
     background: #123f77;
 }
 
+/* default setting buat h1, diapply ke tag anchor */
+.logo {
+	color: #000;
+  display: inline-block;
+  font-size: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
 nav .logo {
-	display: inline-block;
-	color: #fff;
+  color: #fff;
 }
 
 /* ul: placeholder for clickable anchor. on the right-side */
