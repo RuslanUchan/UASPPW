@@ -1,5 +1,10 @@
+<?php 
+	include_once '../../../config/inisiasi.php';
+
+	session_start();
+ ?>
 <?php include '../../templates/header.php' ?>
-<?php include 'nav.php' ?>
+<?php include '../../templates/nav.php' ?>
 <section class="dashboard">
 	<h1>Dashboard</h1>
 	<!-- Modal Buat Iklan -->

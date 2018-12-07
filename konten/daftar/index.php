@@ -1,9 +1,23 @@
+<?php
+    include_once '../../config/inisiasi.php';
+
+    if (isset($_POST['daftar'])) {
+        if (registrasi($_POST) > 0) {
+            echo "<script>
+                    alert('user baru berhasil ditambahkan');
+                  </script>";
+        } else {
+            echo mysqli_error($koneksi);
+        }
+    }
+?>
+
 <?php include '../templates/header.php' ?>
 <section id="register">
 	<div class="container">
 		<a href="<?=BASEURL;?>" class="logo">PPW</a>
 	</div>
-	<form>
+	<form action="" method="post">
 		<h1>Daftar</h1>
 		<div>
 			<label for="username">Username:</label>
@@ -18,14 +32,14 @@
 			<input type="password" name="password" id="password"/>
 		</div>
 		<div>
-			<label for="confirm_password">Konfirmasi Password:</label>
-			<input type="text" name="confirm_password" id="confirm_password"/>
+			<label for="konfirmasi_password">Konfirmasi Password:</label>
+			<input type="password" name="konfirmasi_password" id="konfirmasi_password"/>
 		</div>
-		<button type="submit">Konfirmasi</button>
+		<button type="submit" name="daftar">Konfirmasi</button>
 		<hr/>
 		<p>
 			Sudah punya akun?
-			<a href="<?=BASEURL;?>/views/masuk">Masuk</a>
+			<a href="<?=BASEURL;?>/konten/masuk">Masuk</a>
 		</p>
 	</form>
 </section>

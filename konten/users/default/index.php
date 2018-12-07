@@ -12,10 +12,10 @@
 				<a class="menu">Dashboard</a>
 				<ul>
 					<li>
-						<a href="views/register">Pimpinan</a>
+						<a href="konten/register">Pimpinan</a>
 					</li>
 					<li>
-						<a href="views/login">Keluar</a>
+						<a href="konten/login">Keluar</a>
 					</li>
 				</ul>
 			</div>
