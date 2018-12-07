@@ -1,26 +1,27 @@
-**database**
-    **tabel and schema**
-    
-**config**
-    **server configuration**
-    **folder structure**
-    **database connection**
-
-**view**
-    **templates**
-        **header**
-        **foooter**
-    **templates integration**
-    **links to page**
-
 assets
     gif
-    **logo**
 
-edit-modal
-    javascript transition to edit
+modal
+    edit-modal: javascript transition to edit
+    view_modal: take data from db
     
 comment-code coherency
+    add scalar checker
+    add @ on comment
+
+php
+    modal-form
+        + kategori
+        + ubah hak akses
+        + edit barang
+        + jual barang
+    user verification by admin
+    default page view if no barang exists
+
+more
+    search feature
+    chart feature
+    report feature
 
 -----------------------------
 
