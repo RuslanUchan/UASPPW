@@ -3,12 +3,14 @@
 
 	session_start();
 
-	//
-	//	Verifikasi User
-	//
+	// Tampilkan data user yang belum diverifikasi
 	$query = "SELECT user_id, username FROM users
 			  WHERE akses_id = 1";
 	$unverifiedUserRecord = query($query);
+
+	//
+	//	Verifikasi User
+	//
 
 	// Setelah button verifikasi ditekan
 	if (isset($_GET["user_id"])) {
@@ -27,17 +29,7 @@
 	
 	// Setelah button konfirmasi hak akses ditekan
 	if (isset($_POST["ubah-akses"])) {
-		$ubah_akses_sukses = ubahAkses($_POST);
-
-		if ($ubah_akses_sukses) {
-			echo "<script>
-					alert('Hak akses user berhasil diubah');
-				  </script>";
-		} else {
-			echo "<script>
-					alert('Hak akses user gagal diubah');
-				  </script>";
-		}
+		ubahAkses($_POST);
 
 		// refresh halaman
 	    header("Location:" . $_SERVER['PHP_SELF']);

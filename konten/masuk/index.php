@@ -17,7 +17,7 @@
 	
 	<!-- Jika terjadi error -->
 	<?php if (isset($error)) : ?>
-        <p class="error-msg">username / password salah</p>
+        <p class="error-msg">Username atau Password Salah</p>
     <?php endif; ?>
 
 	<form action="" method="post">

@@ -8,15 +8,20 @@ modal
 comment-code coherency
 
 php
-    modal-form
-        + kategori
-        **+ ubah hak akses**
-        + edit barang
-        + jual barang
-    **user verification by admin**
+    admin
+        **user verification by admin**
+        modal-form
+            **+ kategori**
+            **+ ubah hak akses**
+            + jual barang
+    user
+        modal-form
+            + edit barang
     default page view if no barang exists
+    user logout
 
 more
+    warn user feature
     search feature
     chart feature
     report feature

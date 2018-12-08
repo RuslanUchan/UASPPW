@@ -2,6 +2,32 @@
 	include_once '../../../config/inisiasi.php';
 
 	session_start();
+
+	// Tampilkan kategori yang ada
+	$query = "SELECT * FROM kategori";
+	$arrayKategori = query($query);
+
+	//
+	//	Jual Barang
+	//
+	if (isset($_POST['jual-barang'])) {
+		jualBarang($_POST, $_SESSION['user_id']);
+
+		// refresh halaman
+	    header("Location:" . dirname($_SERVER['PHP_SELF']));
+	    exit;
+	}
+
+	//
+	//	Tambah Kategori
+	//
+	if (isset($_POST['tambah-kategori'])) {
+		tambahKategori($_POST);
+
+		// refresh halaman
+	    header("Location:" . dirname($_SERVER['PHP_SELF']));
+	    exit;
+	}
  ?>
 <?php include '../../templates/header.php' ?>
 <?php include '../../templates/nav.php' ?>
@@ -20,7 +46,7 @@
 			</div>
 			<div class="modal-body">
 				<p>Masukkan data barang yang ingin diiklankan</p>
-				<form id="form-iklan" action="">
+				<form id="form-iklan" action="" method="post" enctype="multipart/form-data">
 					<ul>
 						<li>
 							<label for="namabarang">Nama Barang:</label>
@@ -50,15 +76,21 @@
 							<label for="kategoribarang">Pilih Kategori Barang</label>
 							<select name="kategoribarang" id="kategoribarang" required>
 								<option value="">Kategori Barang</option>
-								<option value="teknologi">Teknologi</option>
+								<!-- <option value="teknologi">Teknologi</option> -->
+								<?php foreach($arrayKategori as $kategori): ?>
+									<option value="<?=$kategori['kategori_id'];?>"><?=ucfirst($kategori['kategori']);?></option>
+								<?php endforeach; ?>
 							</select>
 						</li>
 						<li>
 							<label for="gambarbarang">Gambar Barang:</label>
-            <input type="file" name="gambarbarang" id="gambarbarang" required>
+				            <input type="file" name="gambarbarang" id="gambarbarang" required>
+						</li>
+						<li>
+							<input type="hidden" name="" value="">
 						</li>
 					</ul>
-					<button type="submit">Jual Barang</button>
+					<button type="submit" name="jual-barang">Jual Barang</button>
 				</form>
 			</div>
 		</div>
@@ -77,12 +109,13 @@
 			</div>
 			<div class="modal-body">
 				<p>Masukkan kategori barang yang ingin ditambahkan</p>
-				<form action="">
+				<!-- Form tambah kategori -->
+				<form action="" method="post">
 					<div>
-						<label for="tambahkategori">Kategori Tambahan:</label>
-						<input type="text" name="tambahkategori" id="tambahkategori">
+						<label for="kategori">Kategori Tambahan:</label>
+						<input type="text" name="kategori" id="kategori">
 					</div>
-					<button type="submit">Konfirmasi</button>
+					<button type="submit" name="tambah-kategori">Konfirmasi</button>
 				</form>
 			</div>
 		</div>
@@ -92,18 +125,11 @@
 	<div class="container">
 		<h3>Kategori</h3>
 		<ul class="category">
-			<li class="category-list">
-				<a href="">Teknologi</a>
-			</li>
-			<li class="category-list">
-				<a href="">Fashion</a>
-			</li>
-			<li class="category-list">
-				<a href="">Games</a>
-			</li>
-			<li class="category-list">
-				<a href="">Buku</a>
-			</li>
+			<?php foreach ($arrayKategori as $kategori): ?>
+				<li class="category-list">
+					<a href=""><?=ucfirst($kategori["kategori"]);?></a>
+				</li>
+			<?php endforeach; ?>
 		</ul>
 		<hr/>
 

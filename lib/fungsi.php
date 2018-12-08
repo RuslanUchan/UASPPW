@@ -25,7 +25,7 @@
 
         // Cek apakah username dan email sudah ada
         $hasil = mysqli_query($koneksi, "SELECT username, email FROM users
-                                    WHERE username = '$username' OR email = '$email'");
+                                         WHERE username = '$username' OR email = '$email'");
         if (mysqli_fetch_assoc($hasil)) {
             echo "<script>
                     alert('username atau email telah terdaftar');
@@ -68,7 +68,8 @@
     	$username = $data['username'];
 		$password = $data['password'];
 
-		$hasil = mysqli_query($koneksi, "SELECT users.username,
+		$hasil = mysqli_query($koneksi, "SELECT users.user_id,
+                                                users.username,
 												users.password,
 												hak_akses.akses 
 										FROM users INNER JOIN hak_akses
@@ -81,6 +82,7 @@
 
 			if ($record['password'] === $password) {
 				// Set beberapa value utk user session
+                $_SESSION['user_id'] = $record['user_id'];
 				$_SESSION['username'] = $record['username'];
 				$_SESSION['akses'] = $record['akses'];
 				$_SESSION['login'] = true;
@@ -112,9 +114,9 @@
                   SET akses_id = 4
                   WHERE user_id = '$user_id'";
 
-        $hasil = mysqli_query($koneksi, $query);
+        mysqli_query($koneksi, $query);
 
-        return mysqli_affected_rows($hasil);
+        return mysqli_affected_rows($koneksi);
     }
 
     function ubahAkses($data) {
@@ -129,8 +131,116 @@
                   SET akses_id = '$akses'
                   WHERE username = '$username'";
 
-        $hasil = mysqli_query($koneksi, $query);
+        mysqli_query($koneksi, $query);
 
-        return mysqli_affected_rows($hasil);
+        return mysqli_affected_rows($koneksi);
+    }
+
+    function tambahKategori($data) {
+        // params:  data $_POST dari form admin/index
+        // return:  bool, true bila sukses
+        global $koneksi;
+
+        $kategori = $data['kategori'];
+
+        $query = "INSERT INTO kategori VALUES ('', '$kategori')";
+
+        mysqli_query($koneksi, $query);
+
+        return mysqli_affected_rows($koneksi);
+    }
+
+    function jualBarang($data, $id) {
+        // params:  data $_POST dari form admin/index
+        // return:  bool: true bila sukses
+        global $koneksi;
+
+        $nama = $data['namabarang'];
+        $gambar = upload();
+        $berat = $data['beratbarang'];
+        $stok = $data['stokbarang'];
+        $deskripsi = $data['deskripsibarang'];
+        $baru = $data['barangbaru'];
+        $harga = $data['hargabarang'];
+        $user_id = $id;
+        $kategori = $data['kategoribarang'];
+
+        // Tanggal posting waktu Indonesia ditambah 6 jam
+        $tanggal_posting = date('Y-m-d H:i:s', (time() + (3600 * 6)));
+
+        if (!$gambar) {
+            return false;
+        }
+
+        $query = "INSERT INTO barang VALUES (
+                    '',
+                    '$nama',
+                    '$gambar',
+                    '$berat',
+                    '$stok',
+                    '$deskripsi',
+                    '$baru'
+                    '$harga',
+                    '$user_id'
+                    '$kategori'
+                    '$tanggal_posting'
+                    ''
+                )";
+
+        mysqli_query($koneksi, $query);
+
+        return mysqli_affected_rows($koneksi);
+    }
+
+    function upload() {
+        // params   data $_POST gambar barang
+        // return   string nama file barang
+        $namaFile = $_FILES['gambarbarang']['name'];
+        $ukuranFile = $_FILES['gambarbarang']['size'];
+        $error = $_FILES['gambarbarang']['error'];
+        $tmpName = $_FILES['gambarbarang']['tmp_name'];
+
+        // Cek apakah gambar diupload
+        if ($error === 4) {
+            echo "<script>
+                    alert('Pilih gambar terlebih dahulu');
+                  </script>";
+
+            return false;
+        }
+
+        // Cek apakah yang diupload adalah gambar
+        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+        $ekstensiGambar = explode('.', $namaFile);  // split string
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+
+        // Kalau tidak valid...
+        if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+            echo "<script>
+                    alert('File yang diupload bukan gambar');
+                  </script>";
+
+            return false;
+        }
+
+        // Cek ukuran yang terlalu besar
+        if ($ukuranFile > 1000000) {
+            echo "<script>
+                    alert('Ukuran gambar terlalu besar');
+                  </script>";
+
+            return false;
+        }
+
+        // Generate nama baru untuk file
+        // menghindari name collision di directory
+        $namaFileBaru = uniqid();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        // Gambar siap diupload
+        move_uploaded_file($tmpName, 'assets/img'. $namaFileBaru);
+
+        return $namaFileBaru;
     }
  ?>
