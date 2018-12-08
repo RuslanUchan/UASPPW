@@ -32,6 +32,18 @@ hr {
   border: none;
 }
 
+p.error-msg {
+  color: #dc143c;
+  font-style: italic;
+  font-weight: 600;
+}
+
+p.success-msg {
+  color: #270;
+  font-style: italic;
+  font-weight: 600;
+}
+
 /* 
  * NAV STYLE 
  */
