@@ -22,6 +22,7 @@
  ?>
 <?php include '../../templates/header.php' ?>
 <?php include '../../templates/nav.php' ?>
+<?php include '../warning.php' ?>
 <section class="dashboard">
 	<h1>Dashboard</h1>
 	<!-- Modal Buat Iklan -->

@@ -257,6 +257,7 @@ form button {
     Using ~ general siblings combinators to change opacity
     of button above img
 */
+
 .list-barang-ads img {
   opacity: 1;
   display: block;
@@ -265,15 +266,14 @@ form button {
   transition: .5s ease;
   backface-visibility: hidden;
 }
-
+/*
 .box-lihat {
-  transition: .5s ease; /* transition button */
+  transition: .5s ease;
   opacity: 0;
   transform: translate(0, -750%);
   text-align: center;
 }
 
-/* When img are hovered */
 .list-barang-ads img:hover {
   opacity: 0.3;
 }
@@ -282,11 +282,10 @@ form button {
   opacity: 1;
 }
 
-/* When the box is hovered */
 .list-barang-ads .box-lihat:hover {
   opacity: 1;
 }
-
+/*
 .box-lihat > a {
   background-color: #007bff;
   color: white;
@@ -298,7 +297,7 @@ form button {
   cursor: pointer;
   padding: 16px 32px;
 }
-
+/*
 /*
 .box-terjual {
   display: block;

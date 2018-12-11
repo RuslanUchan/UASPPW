@@ -71,6 +71,7 @@
 		$hasil = mysqli_query($koneksi, "SELECT users.user_id,
                                                 users.username,
 												users.password,
+                                                users.peringatan,
 												hak_akses.akses 
 										FROM users INNER JOIN hak_akses
 										ON users.akses_id = hak_akses.akses_id
@@ -85,6 +86,7 @@
                 $_SESSION['user_id'] = $record['user_id'];
 				$_SESSION['username'] = $record['username'];
 				$_SESSION['akses'] = $record['akses'];
+                $_SESSION['peringatan'] = $record['peringatan'];
 				$_SESSION['login'] = true;
 
 				// Cek hak akses untuk redirect user
@@ -328,5 +330,31 @@
         mysqli_query($koneksi, $query);
 
         return mysqli_affected_rows($koneksi);
+    }
+
+    function warn_user($id) {
+        // params   $_GET data -> user_id
+        // return   0 jika sukses (reset $_SESSION)
+        global $koneksi;
+
+        $query = "UPDATE users
+                  SET peringatan = 1
+                  WHERE user_id = $id";
+
+        mysqli_query($koneksi, $query);
+
+        return mysqli_affected_rows($koneksi);
+    }
+
+    function reset_warning($id) {
+        global $koneksi;
+
+        $query = "UPDATE users
+                  SET peringatan = 0
+                  WHERE user_id = $id";
+
+        mysqli_query($koneksi, $query);
+
+        return !mysqli_affected_rows($koneksi);
     }
  ?>

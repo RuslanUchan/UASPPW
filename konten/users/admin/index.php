@@ -32,6 +32,7 @@
  ?>
 <?php include '../../templates/header.php' ?>
 <?php include '../../templates/nav.php' ?>
+<?php include '../warning.php' ?>
 <section class="dashboard">
 	<h1>Dashboard</h1>
 	<!-- Modal Buat Iklan -->
@@ -39,28 +40,7 @@
 
 	<!-- Modal Tambah Kategori -->
 	<a class="dashboard-button trigger-modal">Tambah Kategori</a>
-
-	<div class="modal">
-		
-		<!-- Konten Modal -->
-		<div class="modal-konten">
-			<div class="modal-header">
-				<span class="modal-close">&times;</span>
-				<h2>Tambah Kategori</h2>
-			</div>
-			<div class="modal-body">
-				<p>Masukkan kategori barang yang ingin ditambahkan</p>
-				<!-- Form tambah kategori -->
-				<form action="" method="post">
-					<div>
-						<label for="kategori">Kategori Tambahan:</label>
-						<input type="text" name="kategori" id="kategori">
-					</div>
-					<button type="submit" name="tambah-kategori">Konfirmasi</button>
-				</form>
-			</div>
-		</div>
-	</div>
+	<?php include '../tambah-kategori.php' ?>
 </section>
 <section class="page">
 	<div class="container">

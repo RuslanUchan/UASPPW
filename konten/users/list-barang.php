@@ -1,8 +1,10 @@
 <?php 
     $imgURL = BASEURL . '/assets/img/imgbrg/';
-    $edit_success = false;
 
-    // Parameter hapus dan terjual -> barang_id
+    //
+    //	Hapus
+    //
+    // Parameter hapus -> barang_id
     if (isset($_GET['hapus'])) {
     	if (hapus($_GET['hapus'])) {
     		header("Location:" . dirname($_SERVER['PHP_SELF']));
@@ -10,6 +12,10 @@
     	}
     }
 
+    //
+    //	Terjual
+    //
+    // Parameter terjual -> barang_id
     if (isset($_GET['terjual'])) {
     	if (terjual($_GET['terjual'])) {
     		header("Location:" . dirname($_SERVER['PHP_SELF']));
@@ -17,6 +23,9 @@
     	}
     }
 
+    //
+    //	Warn User
+    //
     // Parameter warn_user -> user_id
     if (isset($_GET['warn_user_id'])) {
     	if (warn_user($_GET['warn_user_id'])) {
@@ -24,6 +33,17 @@
 		    exit;
     	}
     }
+
+    //
+	//	Edit Barang
+	//
+	if (isset($_POST['edit-barang'])) {
+		if (edit($_POST, $_SESSION['user_id'])) {
+			// refresh halaman
+			header("Location: " . dirname($_SERVER['PHP_SELF']));
+			exit;
+		}
+	}
  ?>
 
 <!-- Item Lists -->
@@ -38,21 +58,17 @@
 	-->
 	<?php else: ?>
 		<?php foreach ($arrayBarang as $barang): ?>
-			<?php 
-				$baru = ($barang['baru']) ? 'Ya' : 'Tidak';
-			 ?>
+			<?php $baru = ($barang['baru']) ? 'Ya' : 'Tidak'; ?>
 			<div class="list-barang-ads">
 				<img src="<?=$imgURL;?>/<?=$barang['gambar'];?>">
-				<div class="box-lihat">
-					<!-- Modal Barang Pertama -->
-					<a class="trigger-modal">Lihat</a>
-				</div>
 				<p><?=$barang['nama'];?></p>
+
+				<!-- Button Edit -->
 				<?php if ($current_user_id === $barang['user_id']): ?>
-					<a class="edit-button trigger-modal">Lihat</a>
 					<a class="edit-button trigger-modal">Edit</a>
 					<?php include 'edit-barang.php' ?>
 				<?php endif; ?>
+				<a class="edit-button trigger-modal">Lihat</a>
 				<!-- 
 					Jika bukan user, hilangkan opsi tandai terjual
 				-->
@@ -60,8 +76,6 @@
 					<a href="?terjual=<?=$barang['barang_id'];?>">tandai terjual</a>
 				<?php endif; ?>
 
-				<!-- Display Modalnya di luar :) -->
-				<!-- Class spesial untuk mengatasi error modal tertimpa -->
 				<div class="modal">
 					<!-- Konten Modal -->
 					<div class="modal-konten">

@@ -1,17 +1,4 @@
-<?php 
-	//
-	//	Edit Barang
-	//
-	if (isset($_POST['edit-barang'])) {
-		if (edit($_POST, $_SESSION['user_id'])) {
-			// refresh halaman
-			header("Location: " . dirname($_SERVER['PHP_SELF']));
-			exit;
-		}
-	}
- ?>
-
-<div class="modal modalEdit">
+<div class="modal">
 
 	<!-- Konten Modal -->
 	<div class="modal-konten">
@@ -50,7 +37,7 @@
 					<li>
 						<label for="kategoribarang">Pilih Kategori Barang</label>
 						<select name="kategoribarang" id="kategoribarang" required>
-							<option value="">Kategori Barang</option>
+							<option value="<?=$barang['kategori_id'];?>"><?=ucfirst($barang['kategori']);?></option>
 							<?php foreach($arrayKategori as $kategori): ?>
 								<option value="<?=$kategori['kategori_id'];?>"><?=ucfirst($kategori['kategori']);?></option>
 							<?php endforeach; ?>
