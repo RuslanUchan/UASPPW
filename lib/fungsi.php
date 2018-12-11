@@ -258,4 +258,14 @@
         
         return $namaFileBaru;
     }
+
+    function hapus($id) {
+        global $koneksi;
+
+        $query = "DELETE FROM barang WHERE id = $id";
+
+        mysqli_query($koneksi, $query);
+
+        return mysqli_affected_rows($koneksi);
+    }
  ?>

@@ -17,7 +17,7 @@ php
     user
         modal-form
             + edit barang
-    default page view if no barang exists
+    **default page view if no barang exists**
     user logout
 
 more

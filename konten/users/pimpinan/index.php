@@ -2,6 +2,12 @@
 	include_once '../../../config/inisiasi.php';
 
 	session_start();
+
+	// jika belum login
+    if (!isset($_SESSION['login'])) {
+        header("Location: login.php");
+        exit;
+    }
  ?>
 <?php include '../../templates/header.php' ?>
 <?php include '../../templates/nav.php' ?>
@@ -12,7 +18,7 @@
 </section>
 <section class="page">
 	<div class="container">
-		<h1>OK</h1>
+		<div id="no-display"></div>
 	</div>
 </section>
 <?php include '../../templates/footer.php' ?>
