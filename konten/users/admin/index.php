@@ -4,18 +4,26 @@
 	session_start();
 
 	// Tampilkan kategori yang ada
-	$query = "SELECT * FROM kategori";
-	$arrayKategori = query($query);
+	$query_kategori = "SELECT * FROM kategori";
+	$arrayKategori = query($query_kategori);
+
+	// Tampilkan barang yang terjual
+	$query_barang = "SELECT * 
+					 FROM barang INNER JOIN kategori
+					 ON barang.kategori_id = kategori.kategori_id";
+	$arrayBarang = query($query_barang);
+
+	$imgURL = BASEURL . '/assets/img/imgbrg/';
 
 	//
 	//	Jual Barang
 	//
 	if (isset($_POST['jual-barang'])) {
 		jualBarang($_POST, $_SESSION['user_id']);
-
+		
 		// refresh halaman
-	    header("Location:" . dirname($_SERVER['PHP_SELF']));
-	    exit;
+	    // header("Location:" . dirname($_SERVER['PHP_SELF']));
+	    // exit;
 	}
 
 	//
@@ -66,7 +74,7 @@
 						</li>
 						<li id="clear"></li>
 						<li>
-							Barang Baru<input id="checkbox" type="checkbox" name="barangbaru" value="baru">
+							Barang Baru<input id="checkbox" type="checkbox" name="barangbaru" value="1">
 						</li>
 						<li>
 							<label for="deskripsibarang">Deskripsi Barang</label>
@@ -85,9 +93,6 @@
 						<li>
 							<label for="gambarbarang">Gambar Barang:</label>
 				            <input type="file" name="gambarbarang" id="gambarbarang" required>
-						</li>
-						<li>
-							<input type="hidden" name="" value="">
 						</li>
 					</ul>
 					<button type="submit" name="jual-barang">Jual Barang</button>
@@ -134,7 +139,47 @@
 		<hr/>
 
 		<!-- Item Lists -->
-		<h1>OK</h1>
+		<div class="list-barang">
+			<?php foreach ($arrayBarang as $barang): ?>
+				<?php 
+					$baru = ($barang['baru']) ? 'Ya' : 'Tidak';
+				 ?>
+				<div class="list-barang-ads">
+					<img src="<?=$imgURL;?>/<?=$barang['gambar'];?>">
+					<div class="box-lihat">
+						<!-- Modal Barang Pertama -->
+						<a class="trigger-modal">Lihat</a>
+					</div>
+					<p><?=$barang['nama'];?></p>
+					<a href="terjual.php?id=<?=$barang['barang_id'];?>">tandai terjual</a>
+					<!-- Display Modalnya di luar :) -->
+					<div class="modal">
+						<!-- Konten Modal -->
+						<div class="modal-konten">
+							<div class="modal-header">
+								<span class="modal-close">&times;</span>
+								<h2><?=$barang['nama'];?></h2>
+							</div>
+							<div class="modal-body">
+								<ul>
+									<li><p>Harga Barang:</p><span>Rp. <?=$barang['harga'];?></span></li>
+									<li><p>Stok:</p><span><?=$barang['stok'];?></span></li>
+									<li><p>Berat:</p><span><?=$barang['berat'];?> gram</span></li>
+									<li><p>Barang Baru:</p><span><?=$baru;?></span></li>
+									<li><p id="lihat-deskripsi-barang">Deskripsi Barang:</p><span><?=$barang['deskripsi'];?></span></li>
+									<li><p>Kategori Barang:</p><span><?=ucfirst($barang['kategori']);?></span></li>
+								</ul>
+								<div class="container">
+									<a href="hapus.php?id=<?=$barang['barang_id'];?>" class="delete-button">Hapus</a>
+									<a href="edit.php?id=<?=$barang['barang_id'];?>" class="edit-button">Edit</a>
+									<!-- <a class="warning-button">Peringati User</a> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
 	</div>
 </section>
 <?php include '../../templates/footer.php' ?>

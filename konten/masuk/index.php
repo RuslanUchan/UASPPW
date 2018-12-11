@@ -20,6 +20,12 @@
         <p class="error-msg">Username atau Password Salah</p>
     <?php endif; ?>
 
+    <!-- User belum terverifikasi -->
+
+	<?php // if (isset($belum_verifikasi)): ?>
+		<!-- <p class="error-msg">Akun Anda belum Terverifikasi</p> -->
+	<?php // endif; ?>
+
 	<form action="" method="post">
 		<h1>Masuk</h1>
 		<div>

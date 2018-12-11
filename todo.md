@@ -5,15 +5,15 @@ modal
     edit-modal: javascript transition to edit
     view_modal: take data from db
     
-comment-code coherency
+**comment-code coherency**
 
 php
-    admin
+    **admin**
         **user verification by admin**
-        modal-form
+        **modal-form**
             **+ kategori**
             **+ ubah hak akses**
-            + jual barang
+            **+ jual barang**
     user
         modal-form
             + edit barang

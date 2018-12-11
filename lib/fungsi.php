@@ -93,6 +93,7 @@
 					header("Location: " . BASEURL . "/konten/users/" . $record['akses']);
 					exit;
 				} else {
+                    // echo '<p class="error-msg">Akun Anda belum Terverifikasi</p>';
 					header("Location: " . BASEURL);
 					exit;
 				}
@@ -150,6 +151,14 @@
         return mysqli_affected_rows($koneksi);
     }
 
+    function tanggalPosting() {
+        $tanggal = date('Y-m-d H:i:s', (time() + (3600 * 6)));
+        $tanggal_posting = new DateTime($tanggal);
+
+        // Untuk dimasukkan ke database
+        return $tanggal_posting->format('Y-m-d H:i:s');
+    }
+
     function jualBarang($data, $id) {
         // params:  data $_POST dari form admin/index
         // return:  bool: true bila sukses
@@ -160,13 +169,14 @@
         $berat = $data['beratbarang'];
         $stok = $data['stokbarang'];
         $deskripsi = $data['deskripsibarang'];
-        $baru = $data['barangbaru'];
+        $baru = (isset($data['barangbaru'])) ? 1 : 0;
         $harga = $data['hargabarang'];
         $user_id = $id;
-        $kategori = $data['kategoribarang'];
+        $kategori_id = $data['kategoribarang'];
 
         // Tanggal posting waktu Indonesia ditambah 6 jam
-        $tanggal_posting = date('Y-m-d H:i:s', (time() + (3600 * 6)));
+        $tanggal_posting = tanggalPosting();
+        $status = 0;
 
         if (!$gambar) {
             return false;
@@ -179,13 +189,14 @@
                     '$berat',
                     '$stok',
                     '$deskripsi',
-                    '$baru'
                     '$harga',
-                    '$user_id'
-                    '$kategori'
-                    '$tanggal_posting'
-                    ''
+                    '$baru',
+                    '$user_id',
+                    '$kategori_id',
+                    '$tanggal_posting',
+                    '$status'
                 )";
+
 
         mysqli_query($koneksi, $query);
 
@@ -195,6 +206,8 @@
     function upload() {
         // params   data $_POST gambar barang
         // return   string nama file barang
+        global $koneksi;
+        
         $namaFile = $_FILES['gambarbarang']['name'];
         $ukuranFile = $_FILES['gambarbarang']['size'];
         $error = $_FILES['gambarbarang']['error'];
@@ -239,8 +252,10 @@
         $namaFileBaru .= $ekstensiGambar;
 
         // Gambar siap diupload
-        move_uploaded_file($tmpName, 'assets/img'. $namaFileBaru);
+        move_uploaded_file($tmpName, $_SERVER['DOCUMENT_ROOT'] .'/UASPPW/assets/img/imgbrg/'. $namaFileBaru);
 
+        if (mysqli_errno($koneksi)) echo mysqli_error();
+        
         return $namaFileBaru;
     }
  ?>
