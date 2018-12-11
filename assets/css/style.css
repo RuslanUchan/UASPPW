@@ -1,7 +1,7 @@
 /* 
  * MAIN STYLE 
  */
-@import url('https://fonts.googleapis.com/css?family=Lato');
+/*@import url('https://fonts.googleapis.com/css?family=Lato');*/
 
 body, html {
 	width: 100%;
@@ -299,6 +299,7 @@ form button {
   padding: 16px 32px;
 }
 
+/*
 .box-terjual {
   display: block;
   height: 60%;
@@ -310,6 +311,7 @@ form button {
   padding-top: 100px;
   box-sizing: border-box;
 }
+*/
 
 /*
  *  ADMINISTRASI - ADMIN

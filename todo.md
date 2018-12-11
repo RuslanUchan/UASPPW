@@ -17,6 +17,7 @@ php
     user
         modal-form
             + edit barang
+            + jual barang
     **default page view if no barang exists**
     user logout
 

@@ -15,19 +15,22 @@
 	$query_barang = "SELECT * FROM barang 
                      INNER JOIN kategori ON barang.kategori_id = kategori.kategori_id
                      INNER JOIN users ON barang.penjual_id = users.user_id
-                     WHERE barang.penjual_id = '$current_user_id'";
+                     WHERE barang.penjual_id = '$current_user_id'
+                     AND barang.status = 0
+                     ORDER BY barang.tanggal_posting";
 	$arrayBarang = query($query_barang);
  ?>
 <?php include '../../templates/header.php' ?>
 <?php include '../../templates/nav.php' ?>
 <section class="dashboard">
 	<h1>Dashboard</h1>
-	<a href="#" id="" class="dashboard-button">Buat Iklan</a>
+	<!-- Modal Buat Iklan -->
+	<?php include '../jual-barang.php' ?>
 </section>
 <section class="page">
 	<div class="container">
 		<!-- Item Lists -->
-		<?php include '../../templates/item-lists.php' ?>
+		<?php include '../list-barang.php' ?>
 	</div>
 </section>
 <?php include '../../templates/footer.php' ?>

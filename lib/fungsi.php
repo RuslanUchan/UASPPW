@@ -260,9 +260,70 @@
     }
 
     function hapus($id) {
+        // params   data $_GET berisi barang_id
+        // return   1 jika sukses, 0 jika gagal
         global $koneksi;
 
-        $query = "DELETE FROM barang WHERE id = $id";
+        $query = "DELETE FROM barang WHERE barang_id = $id";
+
+        mysqli_query($koneksi, $query);
+
+        return mysqli_affected_rows($koneksi);
+    }
+
+    function terjual($id) {
+        // params   data $_GET berisi barang_id
+        // return   1 jika sukses, 0 jika gagal
+        global $koneksi;
+
+        $query = "UPDATE barang
+                  SET status = 1
+                  WHERE barang_id = '$id'";
+
+        mysqli_query($koneksi, $query);
+
+        return mysqli_affected_rows($koneksi);
+    }
+
+    
+    function edit($data, $id) {
+        // params   data $_POST berisi data form edit-barang
+        // return   1 jika sukses, 0 jika gagal
+        global $koneksi;
+
+        $barang_id = $data['barang_id'];
+        $nama = $data['namabarang'];
+        $gambarLama = $data['gambarLama'];
+        $berat = $data['beratbarang'];
+        $stok = $data['stokbarang'];
+        $deskripsi = $data['deskripsibarang'];
+        $baru = (isset($data['barangbaru'])) ? 1 : 0;
+        $harga = $data['hargabarang'];
+        $user_id = $id;
+        $kategori_id = $data['kategoribarang'];
+        $tanggal_posting = tanggalPosting();
+        $status = 0;
+
+        // Cek apakah user mengupload gambar baru
+        if ($_FILES['gambarbarang']['error'] === 4) {
+            $gambar = $gambarLama;
+        } else {
+            $gambar = upload();
+        }
+
+        $query = "UPDATE barang 
+                  SET nama = '$nama',
+                      gambar = '$gambar',
+                      berat = '$berat',
+                      stok = '$stok',
+                      deskripsi = '$deskripsi',
+                      harga = '$harga',
+                      baru = '$baru',
+                      penjual_id = '$user_id',
+                      kategori_id = '$kategori_id',
+                      tanggal_posting = '$tanggal_posting',
+                      status = '$status'
+                  WHERE barang_id = $barang_id";
 
         mysqli_query($koneksi, $query);
 

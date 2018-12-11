@@ -1,5 +1,6 @@
 <?php 
     $imgURL = BASEURL . '/assets/img/imgbrg/';
+    $edit_success = false;
 
     // Parameter hapus dan terjual -> barang_id
     if (isset($_GET['hapus'])) {
@@ -23,15 +24,18 @@
 		    exit;
     	}
     }
-
  ?>
 
 <!-- Item Lists -->
 <div class="list-barang">
-	<!-- Default jika tidak ada barang di array -->
+	<!-- 
+		Default jika tidak ada barang di array 
+	-->
 	<?php if(!isset($arrayBarang)): ?>
 		<div id="no-display"></div>
-	<!-- Jika ada barang di array, loop -->
+	<!-- 
+		Jika ada barang di array, loop 
+	-->
 	<?php else: ?>
 		<?php foreach ($arrayBarang as $barang): ?>
 			<?php 
@@ -44,8 +48,20 @@
 					<a class="trigger-modal">Lihat</a>
 				</div>
 				<p><?=$barang['nama'];?></p>
-				<a href="?terjual=<?=$barang['barang_id'];?>">tandai terjual</a>
+				<?php if ($current_user_id === $barang['user_id']): ?>
+					<a class="edit-button trigger-modal">Lihat</a>
+					<a class="edit-button trigger-modal">Edit</a>
+					<?php include 'edit-barang.php' ?>
+				<?php endif; ?>
+				<!-- 
+					Jika bukan user, hilangkan opsi tandai terjual
+				-->
+				<?php if ($current_user_id === $barang['user_id']): ?>
+					<a href="?terjual=<?=$barang['barang_id'];?>">tandai terjual</a>
+				<?php endif; ?>
+
 				<!-- Display Modalnya di luar :) -->
+				<!-- Class spesial untuk mengatasi error modal tertimpa -->
 				<div class="modal">
 					<!-- Konten Modal -->
 					<div class="modal-konten">
@@ -64,9 +80,13 @@
 								<li><p>Pengiklan:</p><span><?=ucfirst($barang['username']);?></span></li>
 							</ul>
 							<div class="container">
+
+								<!-- 
+									Jika user adalah pemilik barang. Berikan akses edit dan hapus 
+									Jika user adalah admin, berikan akses peringati user
+								-->
 								<?php if ($current_user_id === $barang['user_id']): ?>
 									<a href="?hapus=<?=$barang['barang_id'];?>" class="delete-button">Hapus</a>
-									<a href="?edit=<?=$barang['barang_id'];?>" class="edit-button">Edit</a>
 								<?php else: ?>
 									<a href="?warn_user_id=<?=$barang['user_id'];?>" class="warning-button">Peringati User</a>
 								<?php endif; ?>
