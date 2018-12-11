@@ -5,9 +5,9 @@
 
 	$current_user_id = $_SESSION['user_id'];
 
-	// jika belum login
-    if (!isset($_SESSION['login'])) {
-        header("Location: login.php");
+	// jika belum login atau akses bukan admin
+    if (!isset($_SESSION['login']) || $_SESSION['akses'] != 'admin') {
+        header("Location: " . BASEURL . "/konten/masuk");
         exit;
     }
 
@@ -15,7 +15,7 @@
 	$query_barang = "SELECT * FROM barang 
                      INNER JOIN kategori ON barang.kategori_id = kategori.kategori_id
                      INNER JOIN users ON barang.penjual_id = users.user_id
-                     AND barang.status = 0
+                     WHERE barang.status = 0
                      ORDER BY barang.tanggal_posting";
 	$arrayBarang = query($query_barang);
 

@@ -5,9 +5,9 @@
 
 	$current_user_id = $_SESSION['user_id'];
 
-	// jika belum login
-    if (!isset($_SESSION['login'])) {
-        header("Location: login.php");
+	// jika belum login atau akses bukan verified user
+    if (!isset($_SESSION['login']) || $_SESSION['akses'] != 'verified_user') {
+        header("Location: " . BASEURL . "/konten/masuk");
         exit;
     }
 

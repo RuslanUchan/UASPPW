@@ -13,6 +13,16 @@
         return $arrayRecord;
 	}
 
+    function cari($keyword) {
+        global $koneksi;
+        $query = "SELECT * FROM barang
+                  INNER JOIN kategori ON barang.kategori_id = kategori.kategori_id
+                  INNER JOIN users ON barang.penjual_id = users.user_id
+                  WHERE barang.nama LIKE '%$keyword%'";
+
+        return query($query);
+    }
+
 	function registrasi($data) {
 		// params: 	data $_POST dari konten/daftar
 		// return:	bool; bernilai true jika berhasil masuk

@@ -12,7 +12,8 @@
 				<a href=""><?=ucfirst($_SESSION['username']);?></a>
 			</li>
 			<li>
-				<a href="<?=BASEURL;?>">Keluar</a>
+				<!-- Hacky logout -->
+				<a href="<?=BASEURL;?>/konten/users/keluar.php?url=<?=BASEURL;?>">Keluar</a>
 			</li>
 		</ul>
 	</div>

@@ -3,9 +3,9 @@
 
 	session_start();
 
-	// jika belum login
-    if (!isset($_SESSION['login'])) {
-        header("Location: login.php");
+	// jika belum login atau akses bukan pimpinan
+    if (!isset($_SESSION['login']) || $_SESSION['akses'] != 'pimpinan') {
+        header("Location: " . BASEURL . "/konten/masuk");
         exit;
     }
  ?>
