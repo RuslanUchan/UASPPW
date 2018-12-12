@@ -99,6 +99,7 @@
 				$_SESSION['akses'] = $record['akses'];
                 $_SESSION['peringatan'] = $record['peringatan'];
 				$_SESSION['login'] = true;
+                $_SESSION['unverified'] = false;
 
 				// Cek hak akses untuk redirect user
 				if ($record['akses'] !== 'user') {
@@ -106,7 +107,8 @@
 					header("Location: " . BASEURL . "/konten/users/" . $record['akses']);
 					exit;
 				} else {
-                    // echo '<p class="error-msg">Akun Anda belum Terverifikasi</p>';
+                    // Jika user, pasang message belum terverifikasi
+                    $_SESSION['unverified'] = true;
 					header("Location: " . BASEURL);
 					exit;
 				}

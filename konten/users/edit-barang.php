@@ -32,7 +32,7 @@
 					</li>
 					<li>
 						<label for="deskripsibarang">Deskripsi Barang</label>
-						<textarea id="deskripsibarang" name="deskripsibarang" rows="5" cols="33""></textarea>
+						<textarea id="deskripsibarang" name="deskripsibarang" rows="5" cols="33""><?=$barang['deskripsi'];?></textarea>
 					</li>
 					<li>
 						<label for="kategoribarang">Pilih Kategori Barang</label>

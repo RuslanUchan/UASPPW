@@ -1,6 +1,9 @@
 <?php
+	session_start();
+
 	$imgURL = BASEURL . '/assets/img/imgbrg/';
 
+	// Bila tombol cari diklik
 	if (isset($_POST['cari'])) {
 		$arrayBarang = cari($_POST['keyword']);
 	}
@@ -25,6 +28,11 @@
 	</div>
 </nav>
 <div id="main-container" class="container">
+	<!-- Display user belum terverifikasi bila $_SESSION['unverified'] diset -->
+	<?php if(isset($_SESSION['unverified'])): ?>
+		<?php include 'konten/users/unverified.php'; ?>
+	<?php endif; ?>
+	<!-- Loop array barang untuk display barang yang dicari -->
 	<?php if (isset($arrayBarang)): ?>
 		<div class="list-barang">
 		<?php foreach ($arrayBarang as $barang): ?>
@@ -57,6 +65,7 @@
 		<?php endforeach ?>
 		</div>
 	<?php else: ?>
+		<!-- Bila tidak ada pencarian, display hero gif -->
 		<img id="hero" src="assets/img/hero.gif" alt="main-gif">
 	<?php endif; ?>
 </div>
