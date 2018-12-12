@@ -1,21 +1,23 @@
 <?php 
 	// Ambil barang dari database
-	
 	$query = "SELECT barang.status, barang.kategori_id, kategori.kategori FROM barang
 			  INNER JOIN kategori ON barang.kategori_id = kategori.kategori_id";
 	$dataBarang = query($query);
 
+	// Ambil kategori dari database
 	$query = "SELECT * FROM kategori";
 	$dataKategori = query($query);
 
 	// Kustomisasi data points
 	$counter = 10;
 
+	// Buat datapoints
 	foreach ($dataKategori as $kategori) {
 		$dataPoints[] = array('x' => $counter, 'y' => 0, 'indexLabel' => ucfirst($kategori['kategori']));
 		$counter += 10;
 	}
 
+	// Hitung jumlah barang per kategori dan set nilainya dalam datapoints
 	$i = 0;
 	foreach($dataPoints as $point) {
 		foreach ($dataBarang as $barang) {

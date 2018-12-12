@@ -18,7 +18,8 @@
         $query = "SELECT * FROM barang
                   INNER JOIN kategori ON barang.kategori_id = kategori.kategori_id
                   INNER JOIN users ON barang.penjual_id = users.user_id
-                  WHERE barang.nama LIKE '%$keyword%'";
+                  WHERE barang.nama LIKE '%$keyword%' 
+                  AND barang.status = 0";
 
         return query($query);
     }

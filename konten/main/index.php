@@ -57,7 +57,7 @@
 		<?php endforeach ?>
 		</div>
 	<?php else: ?>
-		<img id="hero" src="assets/img/wpp-1.jpg" alt="main-gif">
+		<img id="hero" src="assets/img/hero.gif" alt="main-gif">
 	<?php endif; ?>
 </div>
 <footer>

@@ -118,10 +118,12 @@ nav form button {
   display: inline-block;
 }
 
-/* change to gif */
+/* Hero image untuk halaman index */
 #hero {
+  display: block;
+  margin: 0 auto;
   height: auto;
-  width: 50%;
+  width: 75%;
 }
 
 

@@ -13,8 +13,8 @@
 <?php include '../../templates/nav.php' ?>
 <section class="dashboard">
 	<h1>Dashboard</h1>
-	<a href="<?=BASEURL;?>/konten/users/spreadsheet.php" id="" class="dashboard-button">Cetak Spreadsheet</a>
-	<a href="<?=BASEURL;?>/konten/users/pdf.php" id="" class="dashboard-button">Cetak Laporan</a>
+	<a href="<?=BASEURL;?>/konten/users/spreadsheet.php" class="dashboard-button">Cetak Spreadsheet</a>
+	<a href="<?=BASEURL;?>/konten/users/pdf.php" target="_blank" class="dashboard-button">Cetak Laporan</a>
 </section>
 <section class="page">
 	<div class="container">

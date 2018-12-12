@@ -10,10 +10,7 @@
 	$query = "SELECT barang.barang_id, barang.nama, barang.harga, kategori.kategori 
 			  FROM barang
 			  INNER JOIN kategori ON barang.kategori_id = kategori.kategori_id";
-	$hasil = mysqli_query($koneksi, $query);
-	while ($baris = mysqli_fetch_assoc($hasil)) {
-		$data[] = $baris;
-	}
+	$data = query($query);
 
 	$flag = false;
 	foreach($data as $baris) {
