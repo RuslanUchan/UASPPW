@@ -20,7 +20,7 @@ php
 more
     **warn user feature**
     **search feature**
-    chart feature
+    **chart feature**
     report feature
 
 -----------------------------

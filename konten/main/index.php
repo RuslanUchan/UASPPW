@@ -15,7 +15,7 @@
 	<div class="container">
 		<a href="<?=BASEURL;?>" class="logo">PPW</a>
 		<form action="" method="post">
-			<input type="text" placeholder="Cari.." name="keyword">
+			<input id="keyword" type="text" placeholder="Cari.." name="keyword">
 			<button id="cari" type="submit" name="cari">Cari</button>
 		</form>
 		<ul>
@@ -24,7 +24,7 @@
 		</ul>
 	</div>
 </nav>
-<div class="container">
+<div id="main-container" class="container">
 	<?php if (isset($arrayBarang)): ?>
 		<div class="list-barang">
 		<?php foreach ($arrayBarang as $barang): ?>
@@ -55,10 +55,10 @@
 				</div>
 			</div>
 		<?php endforeach ?>
+		</div>
 	<?php else: ?>
 		<img id="hero" src="assets/img/wpp-1.jpg" alt="main-gif">
 	<?php endif; ?>
-	</div>
 </div>
 <footer>
 	<p>Copyright 2018</p>

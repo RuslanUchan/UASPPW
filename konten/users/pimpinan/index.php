@@ -18,7 +18,7 @@
 </section>
 <section class="page">
 	<div class="container">
-		<div id="no-display"></div>
+		<?php include '../chart.php'; ?>
 	</div>
 </section>
 <?php include '../../templates/footer.php' ?>

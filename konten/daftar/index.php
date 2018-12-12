@@ -6,6 +6,9 @@
             echo "<script>
                     alert('user baru berhasil ditambahkan');
                   </script>";
+
+            header("Location: " . BASEURL . "/konten/masuk");
+            exit;
         } else {
             echo mysqli_error($koneksi);
         }
